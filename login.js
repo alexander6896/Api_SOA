@@ -5,10 +5,11 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'password',
-	database : 'nodelogin'
+	host     : '65.99.225.8',
+	user     : 'itqiscco_alex',
+	password : 'vladimir6896',
+	database : 'itqiscco_regitstro',
+	port : 3306
 });
 
 var app = express();
@@ -28,7 +29,7 @@ app.post('/auth', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
 	if (username && password) {
-		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		connection.query('SELECT * FROM estacionamiento WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
                 request.session.username = username;
